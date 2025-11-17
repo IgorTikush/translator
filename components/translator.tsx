@@ -93,7 +93,7 @@ function WordAnalysisCard({ analysis }: WordAnalysisCardProps) {
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground">{analysis.explanation}</p>
-        
+
         {analysis.subWords && analysis.subWords.length > 0 && (
           <div className="mt-4 pt-4 border-t border-border">
             <h4 className="text-xs font-semibold text-muted-foreground mb-3">
@@ -313,29 +313,45 @@ export function Translator() {
                             <span className="block text-xs text-muted-foreground mt-1">
                               {analysis.explanation}
                             </span>
-                            
-                            {analysis.subWords && analysis.subWords.length > 0 && (
-                              <div className="mt-3 pt-3 border-t border-border">
-                                <span className="text-xs font-semibold block mb-2 text-muted-foreground">
-                                  Word breakdown:
-                                </span>
-                                <div className="space-y-2">
-                                  {analysis.subWords.map((subWord, subIndex) => (
-                                    <div key={subIndex} className="bg-muted/50 p-2 rounded">
-                                      <div className="flex items-center justify-between mb-1">
-                                        <span className="font-semibold text-xs">{subWord.word}</span>
-                                        <span className={`${getRoleColor(subWord.role)} px-1.5 py-0.5 rounded text-[10px]`}>
-                                          {subWord.role}
-                                        </span>
-                                      </div>
-                                      <span className="block text-xs font-medium">{subWord.translation}</span>
-                                      <span className="block text-[10px] text-muted-foreground mt-0.5">{subWord.explanation}</span>
-                                    </div>
-                                  ))}
+
+                            {analysis.subWords &&
+                              analysis.subWords.length > 0 && (
+                                <div className="mt-3 pt-3 border-t border-border">
+                                  <span className="text-xs font-semibold block mb-2 text-muted-foreground">
+                                    Word breakdown:
+                                  </span>
+                                  <div className="space-y-2">
+                                    {analysis.subWords.map(
+                                      (subWord, subIndex) => (
+                                        <div
+                                          key={subIndex}
+                                          className="bg-muted/50 p-2 rounded"
+                                        >
+                                          <div className="flex items-center justify-between mb-1">
+                                            <span className="font-semibold text-xs">
+                                              {subWord.word}
+                                            </span>
+                                            <span
+                                              className={`${getRoleColor(
+                                                subWord.role
+                                              )} px-1.5 py-0.5 rounded text-[10px]`}
+                                            >
+                                              {subWord.role}
+                                            </span>
+                                          </div>
+                                          <span className="block text-xs font-medium">
+                                            {subWord.translation}
+                                          </span>
+                                          <span className="block text-[10px] text-muted-foreground mt-0.5">
+                                            {subWord.explanation}
+                                          </span>
+                                        </div>
+                                      )
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                            
+                              )}
+
                             <span className="absolute left-1/2 -translate-x-1/2 bottom-full w-0 h-0 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent border-b-popover drop-shadow-sm"></span>
                           </span>
                         </span>
